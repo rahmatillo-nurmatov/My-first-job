@@ -1,0 +1,175 @@
+<%- include('partials/header', { title: 'Add Animal - Animal Marketplace' }) %>
+
+<div class="container py-4">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="h3 mb-0">Add New Animal</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Add Animal</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-paw me-2"></i>Animal Information</h5>
+                </div>
+                <div class="card-body">
+                    <form action="/add-animal" method="POST" enctype="multipart/form-data">
+                        <!-- Basic Information -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="text-primary mb-3">Basic Information</h6>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Animal Name *</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="species" class="form-label">Species *</label>
+                                <select class="form-select" id="species" name="species" required>
+                                    <option value="">Select Species</option>
+                                    <option value="Dog">Dog</option>
+                                    <option value="Cat">Cat</option>
+                                    <option value="Bird">Bird</option>
+                                    <option value="Rabbit">Rabbit</option>
+                                    <option value="Hamster">Hamster</option>
+                                    <option value="Guinea Pig">Guinea Pig</option>
+                                    <option value="Fish">Fish</option>
+                                    <option value="Reptile">Reptile</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="breed" class="form-label">Breed</label>
+                                <input type="text" class="form-control" id="breed" name="breed" placeholder="e.g., Golden Retriever">
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="age" class="form-label">Age *</label>
+                                <input type="text" class="form-control" id="age" name="age" placeholder="e.g., 2 years, 6 months" required>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="gender" class="form-label">Gender *</label>
+                                <select class="form-select" id="gender" name="gender" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="city" class="form-label">City *</label>
+                                <input type="text" class="form-control" id="city" name="city" required>
+                            </div>
+                        </div>
+
+                        <!-- Transfer Information -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="text-primary mb-3">Transfer Information</h6>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="transferType" class="form-label">Transfer Type *</label>
+                                <select class="form-select" id="transferType" name="transferType" required>
+                                    <option value="">Select Type</option>
+                                    <option value="adoption">Free Adoption</option>
+                                    <option value="sale">For Sale</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="price" class="form-label">Price (if for sale)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control" id="price" name="price" min="0" placeholder="0">
+                                </div>
+                                <small class="form-text text-muted">Leave as 0 for free adoption</small>
+                            </div>
+                        </div>
+
+                        <!-- Photos -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="text-primary mb-3">Photos</h6>
+                                <label for="photos" class="form-label">Upload Photos (up to 5)</label>
+                                <input type="file" class="form-control" id="photos" name="photos" multiple accept="image/*">
+                                <small class="form-text text-muted">Upload clear, well-lit photos of your animal. First photo will be the main photo.</small>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="text-primary mb-3">Description & Details</h6>
+                                
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Personality Description *</label>
+                                    <textarea class="form-control" id="description" name="description" rows="4" 
+                                              placeholder="Describe the animal's personality, behavior, likes/dislikes..." required></textarea>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="health" class="form-label">Health Information *</label>
+                                    <textarea class="form-control" id="health" name="health" rows="3" 
+                                              placeholder="Vaccination status, spay/neuter status, any medical conditions..." required></textarea>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="conditions" class="form-label">Adoption/Transfer Conditions</label>
+                                    <textarea class="form-control" id="conditions" name="conditions" rows="3" 
+                                              placeholder="Any special requirements or conditions for the new owner..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Terms and Submit -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="terms" required>
+                                    <label class="form-check-label" for="terms">
+                                        I confirm that all information provided is accurate and I have the right to transfer this animal. I agree to the platform's terms and conditions.
+                                    </label>
+                                </div>
+                                
+                                <div class="d-flex gap-3">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-plus me-2"></i>Add Animal
+                                    </button>
+                                    <a href="/dashboard" class="btn btn-outline-secondary">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Show/hide price field based on transfer type
+document.getElementById('transferType').addEventListener('change', function() {
+    const priceField = document.getElementById('price');
+    if (this.value === 'adoption') {
+        priceField.value = '0';
+        priceField.disabled = true;
+    } else {
+        priceField.disabled = false;
+    }
+});
+</script>
+<%- include('partials/footer') %>

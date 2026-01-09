@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Animal Marketplace - Find Your Perfect Companion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom Styles for Animal Marketplace */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #17a2b8;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
+            min-height: 500px;
+        }
+
+        .search-box {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+            background: white;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .animal-card {
+            transition: all 0.3s ease;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .animal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--dark-color) 0%, #212529 100%);
+        }
+
+        footer a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            min-width: 300px;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .rating-stars {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            gap: 5px;
+        }
+
+        .rating-stars input[type="radio"] {
+            display: none;
+        }
+
+        .rating-stars .star {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #ddd;
+            transition: color 0.2s;
+        }
+
+        .rating-stars input[type="radio"]:checked ~ .star,
+        .rating-stars .star:hover,
+        .rating-stars .star:hover ~ .star {
+            color: #ffc107;
+        }
+
+        .thumbnail-photo {
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .thumbnail-photo:hover {
+            border-color: var(--primary-color);
+        }
+
+        .main-image {
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="#home">
+                <i class="fas fa-paw me-2"></i><span id="brandName">AnimalMarket</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home" data-translate="nav-home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#catalog" data-translate="nav-animals">Browse Animals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#shelters" data-translate="nav-shelters">Shelters & Breeders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#feedback" data-translate="nav-feedback">Feedback</a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav">
+                    <!-- Language Switcher -->
+                    <li class="nav-item dropdown me-3">
+                        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-globe me-1"></i><span id="currentLang">English</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="switchLanguage('en')">🇺🇸 English</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="switchLanguage('ru')">🇷🇺 Русский</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- User Menu (will be populated by JavaScript) -->
+                    <li class="nav-item" id="loginNav">
+                        <a class="nav-link" href="#login" data-translate="nav-login">Login</a>
+                    </li>
+                    <li class="nav-item" id="registerNav">
+                        <a class="nav-link btn btn-primary text-white ms-2 px-3" href="#register" data-translate="nav-register">Sign Up</a>
+                    </li>
+                    
+                    <!-- Logged in user menu (hidden by default) -->
+                    <li class="nav-item dropdown d-none" id="userDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <img src="" alt="" class="rounded-circle me-1" style="width: 24px; height: 24px;" id="userAvatar">
+                            <span id="userName"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#dashboard">
+                                <i class="fas fa-tachometer-alt me-2"></i><span data-translate="nav-dashboard">Dashboard</span>
+                            </a></li>
+                            <li><a class="dropdown-item" href="#add-animal">
+                                <i class="fas fa-plus me-2"></i><span data-translate="nav-add-animal">Add Animal</span>
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" onclick="logout()">
+                                <i class="fas fa-sign-out-alt me-2"></i><span data-translate="nav-logout">Logout</span>
+                            </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+        <!-- Content will be dynamically loaded here -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5><i class="fas fa-paw me-2"></i><span id="footerBrand">AnimalMarket</span></h5>
+                    <p id="footerDescription">Connecting loving families with animals in need of homes.</p>
+                </div>
+                <div class="col-md-4">
+                    <h6 id="footerQuickLinks">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#catalog" onclick="navigateTo('catalog')" class="text-light" id="footerAnimals">Browse Animals</a></li>
+                        <li><a href="#shelters" onclick="navigateTo('shelters')" class="text-light" id="footerShelters">Shelters</a></li>
+                        <li><a href="#add-animal" onclick="navigateTo('add-animal')" class="text-light" id="footerAddAnimal">Add Animal</a></li>
+                        <li><a href="#feedback" onclick="navigateTo('feedback')" class="text-light" id="footerFeedback">Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 id="footerSupport">Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#feedback" onclick="navigateTo('feedback')" class="text-light" id="footerHelp">Help Center</a></li>
+                        <li><a href="#" class="text-light" id="footerSafety">Safety Guidelines</a></li>
+                        <li><a href="#feedback" onclick="navigateTo('feedback')" class="text-light" id="footerContact">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p id="footerCopyright">&copy; 2024 AnimalMarket. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="public/js/app.js"></script>
+    <script src="public/js/main.js"></script>
+    <script>
+        // Initialize the application when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize data
+            animals = sampleAnimals;
+            shelters = sampleShelters;
+            
+            // Handle navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const page = this.getAttribute('href').substring(1);
+                    if (page) {
+                        navigateTo(page);
+                    }
+                });
+            });
+            
+            // Handle browser back/forward
+            window.addEventListener('hashchange', function() {
+                const page = getCurrentPage();
+                renderPage(page);
+            });
+            
+            // Initial page load
+            const initialPage = getCurrentPage();
+            renderPage(initialPage);
+            
+            // Update UI based on login status
+            updateUserInterface();
+            
+            // Update footer text
+            updateFooterText();
+        });
+
+        // Show notification function
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type} alert-dismissible fade show notification`;
+            notification.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+
+        // Update footer text based on language
+        function updateFooterText() {
+            const t = (en, ru) => currentLanguage === 'ru' ? ru : en;
+            
+            document.getElementById('footerBrand').textContent = t('AnimalMarket', 'РынокЖивотных');
+            document.getElementById('footerDescription').textContent = t('Connecting loving families with animals in need of homes.', 'Соединяем любящие семьи с животными, нуждающимися в доме.');
+            document.getElementById('footerQuickLinks').textContent = t('Quick Links', 'Быстрые ссылки');
+            document.getElementById('footerAnimals').textContent = t('Browse Animals', 'Животные');
+            document.getElementById('footerShelters').textContent = t('Shelters', 'Приюты');
+            document.getElementById('footerAddAnimal').textContent = t('Add Animal', 'Добавить животное');
+            document.getElementById('footerFeedback').textContent = t('Feedback', 'Отзывы');
+            document.getElementById('footerSupport').textContent = t('Support', 'Поддержка');
+            document.getElementById('footerHelp').textContent = t('Help Center', 'Центр помощи');
+            document.getElementById('footerSafety').textContent = t('Safety Guidelines', 'Правила безопасности');
+            document.getElementById('footerContact').textContent = t('Contact Us', 'Связаться с нами');
+            document.getElementById('footerCopyright').innerHTML = `&copy; 2024 ${t('AnimalMarket', 'РынокЖивотных')}. ${t('All rights reserved.', 'Все права защищены.')}`;
+        }
+
+        // Demo notification on page load
+        setTimeout(() => {
+            showNotification('🐾 Welcome to the Animal Marketplace! All features are fully functional. Try switching languages, browsing animals, or creating an account.', 'success');
+        }, 1000);
+    </script>
+</body>
+</html>

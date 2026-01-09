@@ -1,0 +1,252 @@
+<%- include('partials/header', { title: lang === 'ru' ? 'Рынок Животных - Найдите своего идеального компаньона' : 'Animal Marketplace - Find Your Perfect Companion' }) %>
+
+<!-- Hero Section -->
+<section class="hero-section bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">
+                    <%= lang === 'ru' ? 'Найдите своего идеального компаньона' : 'Find Your Perfect Companion' %>
+                </h1>
+                <p class="lead mb-4">
+                    <%= lang === 'ru' ? 'Откройте для себя любящих животных из приютов и проверенных заводчиков. Каждый питомец заслуживает любящий дом.' : 'Discover loving animals from shelters and trusted breeders. Every pet deserves a loving home.' %>
+                </p>
+                <a href="/catalog" class="btn btn-light btn-lg me-3">
+                    <%= lang === 'ru' ? 'Смотреть животных' : 'Browse Animals' %>
+                </a>
+                <a href="/shelters" class="btn btn-outline-light btn-lg">
+                    <%= lang === 'ru' ? 'Найти приюты' : 'Find Shelters' %>
+                </a>
+            </div>
+            <div class="col-lg-6">
+                <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&h=400&fit=crop&crop=center" 
+                     alt="<%= lang === 'ru' ? 'Счастливые питомцы' : 'Happy pets' %>" 
+                     class="img-fluid rounded shadow" style="max-height: 400px; width: 100%; object-fit: cover;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Search Section -->
+<section class="py-4 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="search-box bg-white p-4 rounded shadow">
+                    <form action="/catalog" method="GET" class="row g-3">
+                        <div class="col-md-4">
+                            <select name="species" class="form-select">
+                                <option value=""><%= lang === 'ru' ? 'Все животные' : 'All Animals' %></option>
+                                <option value="dog"><%= lang === 'ru' ? 'Собаки' : 'Dogs' %></option>
+                                <option value="cat"><%= lang === 'ru' ? 'Кошки' : 'Cats' %></option>
+                                <option value="bird"><%= lang === 'ru' ? 'Птицы' : 'Birds' %></option>
+                                <option value="rabbit"><%= lang === 'ru' ? 'Кролики' : 'Rabbits' %></option>
+                                <option value="other"><%= lang === 'ru' ? 'Другие' : 'Other' %></option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select name="transferType" class="form-select">
+                                <option value=""><%= lang === 'ru' ? 'Любой тип' : 'Any Type' %></option>
+                                <option value="adoption"><%= lang === 'ru' ? 'Усыновление' : 'Adoption' %></option>
+                                <option value="sale"><%= lang === 'ru' ? 'Покупка' : 'Purchase' %></option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="city" class="form-control" placeholder="<%= lang === 'ru' ? 'Город' : 'City' %>">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5"><%= lang === 'ru' ? 'Поиск по категориям' : 'Browse by Category' %></h2>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <a href="/catalog?species=dog" class="text-decoration-none">
+                    <div class="category-card text-center p-4 rounded shadow-sm h-100">
+                        <i class="fas fa-dog fa-3x text-primary mb-3"></i>
+                        <h5><%= lang === 'ru' ? 'Собаки' : 'Dogs' %></h5>
+                        <p class="text-muted"><%= lang === 'ru' ? 'Найдите верных компаньонов' : 'Find loyal companions' %></p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="/catalog?species=cat" class="text-decoration-none">
+                    <div class="category-card text-center p-4 rounded shadow-sm h-100">
+                        <i class="fas fa-cat fa-3x text-primary mb-3"></i>
+                        <h5><%= lang === 'ru' ? 'Кошки' : 'Cats' %></h5>
+                        <p class="text-muted"><%= lang === 'ru' ? 'Независимые друзья' : 'Independent friends' %></p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="/catalog?species=bird" class="text-decoration-none">
+                    <div class="category-card text-center p-4 rounded shadow-sm h-100">
+                        <i class="fas fa-dove fa-3x text-primary mb-3"></i>
+                        <h5><%= lang === 'ru' ? 'Птицы' : 'Birds' %></h5>
+                        <p class="text-muted"><%= lang === 'ru' ? 'Красочные компаньоны' : 'Colorful companions' %></p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="/catalog?species=rabbit" class="text-decoration-none">
+                    <div class="category-card text-center p-4 rounded shadow-sm h-100">
+                        <i class="fas fa-rabbit fa-3x text-primary mb-3"></i>
+                        <h5><%= lang === 'ru' ? 'Мелкие питомцы' : 'Small Pets' %></h5>
+                        <p class="text-muted"><%= lang === 'ru' ? 'Кролики, хомяки и др.' : 'Rabbits, hamsters & more' %></p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Collections -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <!-- Animals from Shelters -->
+        <div class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3><i class="fas fa-heart text-danger me-2"></i>
+                    <%= lang === 'ru' ? 'Животные из приютов' : 'Animals from Shelters' %>
+                </h3>
+                <a href="/catalog?transferType=adoption" class="btn btn-outline-primary">
+                    <%= lang === 'ru' ? 'Смотреть все' : 'View All' %>
+                </a>
+            </div>
+            <div class="row g-4">
+                <% shelterAnimals.slice(0, 4).forEach(animal => { %>
+                    <div class="col-md-3">
+                        <div class="animal-card card h-100 shadow-sm">
+                            <img src="<%= animal.photos[0] %>" class="card-img-top" 
+                                 alt="<%= lang === 'ru' ? animal.nameRu : animal.name %>" 
+                                 style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h6 class="card-title"><%= lang === 'ru' ? animal.nameRu : animal.name %></h6>
+                                <p class="text-muted small mb-2">
+                                    <%= lang === 'ru' ? animal.breedRu : animal.breed %> • 
+                                    <%= lang === 'ru' ? animal.ageRu : animal.age %>
+                                </p>
+                                <p class="text-success fw-bold mb-2">
+                                    <i class="fas fa-heart me-1"></i>
+                                    <%= lang === 'ru' ? 'Бесплатное усыновление' : 'Free Adoption' %>
+                                </p>
+                                <p class="text-muted small">
+                                    <i class="fas fa-map-marker-alt me-1"></i>
+                                    <%= lang === 'ru' ? animal.cityRu : animal.city %>
+                                </p>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <a href="/animal/<%= animal.id %>" class="btn btn-primary btn-sm w-100">
+                                    <%= lang === 'ru' ? 'Подробнее' : 'View Details' %>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+
+        <!-- Puppies and Kittens -->
+        <div class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3><i class="fas fa-baby text-warning me-2"></i>
+                    <%= lang === 'ru' ? 'Щенки и котята' : 'Puppies & Kittens' %>
+                </h3>
+                <a href="/catalog" class="btn btn-outline-primary">
+                    <%= lang === 'ru' ? 'Смотреть все' : 'View All' %>
+                </a>
+            </div>
+            <div class="row g-4">
+                <% puppiesKittens.slice(0, 4).forEach(animal => { %>
+                    <div class="col-md-3">
+                        <div class="animal-card card h-100 shadow-sm">
+                            <img src="<%= animal.photos[0] %>" class="card-img-top" 
+                                 alt="<%= lang === 'ru' ? animal.nameRu : animal.name %>" 
+                                 style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h6 class="card-title"><%= lang === 'ru' ? animal.nameRu : animal.name %></h6>
+                                <p class="text-muted small mb-2">
+                                    <%= lang === 'ru' ? animal.breedRu : animal.breed %> • 
+                                    <%= lang === 'ru' ? animal.ageRu : animal.age %>
+                                </p>
+                                <p class="fw-bold mb-2">
+                                    <% if (animal.price > 0) { %>
+                                        <span class="text-success">$<%= animal.price %></span>
+                                    <% } else { %>
+                                        <span class="text-success">
+                                            <i class="fas fa-heart me-1"></i>
+                                            <%= lang === 'ru' ? 'Бесплатно' : 'Free' %>
+                                        </span>
+                                    <% } %>
+                                </p>
+                                <p class="text-muted small">
+                                    <i class="fas fa-map-marker-alt me-1"></i>
+                                    <%= lang === 'ru' ? animal.cityRu : animal.city %>
+                                </p>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <a href="/animal/<%= animal.id %>" class="btn btn-primary btn-sm w-100">
+                                    <%= lang === 'ru' ? 'Подробнее' : 'View Details' %>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="mb-4"><%= lang === 'ru' ? 'Готовы изменить мир к лучшему?' : 'Ready to Make a Difference?' %></h2>
+        <p class="lead mb-4">
+            <%= lang === 'ru' ? 'Присоединяйтесь к нашему сообществу любителей животных и помогите питомцам найти свои дома навсегда.' : 'Join our community of animal lovers and help pets find their forever homes.' %>
+        </p>
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-3">
+                <div class="p-4">
+                    <i class="fas fa-plus-circle fa-2x mb-3"></i>
+                    <h5><%= lang === 'ru' ? 'Разместить животное' : 'List an Animal' %></h5>
+                    <p><%= lang === 'ru' ? 'Помогите животному найти новый дом' : 'Help an animal find a new home' %></p>
+                    <a href="/add-animal" class="btn btn-light">
+                        <%= lang === 'ru' ? 'Начать' : 'Get Started' %>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="p-4">
+                    <i class="fas fa-search fa-2x mb-3"></i>
+                    <h5><%= lang === 'ru' ? 'Усыновить питомца' : 'Adopt a Pet' %></h5>
+                    <p><%= lang === 'ru' ? 'Найдите своего идеального компаньона' : 'Find your perfect companion' %></p>
+                    <a href="/catalog?transferType=adoption" class="btn btn-light">
+                        <%= lang === 'ru' ? 'Смотреть сейчас' : 'Browse Now' %>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="p-4">
+                    <i class="fas fa-home fa-2x mb-3"></i>
+                    <h5><%= lang === 'ru' ? 'Поддержать приюты' : 'Support Shelters' %></h5>
+                    <p><%= lang === 'ru' ? 'Помогите местным приютам для животных' : 'Help local animal shelters' %></p>
+                    <a href="/shelters" class="btn btn-light">
+                        <%= lang === 'ru' ? 'Найти приюты' : 'Find Shelters' %>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<%- include('partials/footer') %>

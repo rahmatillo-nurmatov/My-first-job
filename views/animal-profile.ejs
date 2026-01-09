@@ -1,0 +1,312 @@
+<%- include('partials/header', { title: (lang === 'ru' ? animal.nameRu : animal.name) + ' - ' + (lang === 'ru' ? 'Рынок Животных' : 'Animal Marketplace') }) %>
+
+<div class="container py-4">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/"><%= lang === 'ru' ? 'Главная' : 'Home' %></a></li>
+            <li class="breadcrumb-item"><a href="/catalog"><%= lang === 'ru' ? 'Каталог' : 'Catalog' %></a></li>
+            <li class="breadcrumb-item active"><%= lang === 'ru' ? animal.nameRu : animal.name %></li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <!-- Animal Photos -->
+        <div class="col-lg-6 mb-4">
+            <div class="animal-photos">
+                <!-- Main Photo -->
+                <div class="main-photo mb-3">
+                    <img src="<%= animal.photos[0] %>" 
+                         class="img-fluid rounded shadow main-image" 
+                         alt="<%= lang === 'ru' ? animal.nameRu : animal.name %>"
+                         style="width: 100%; height: 400px; object-fit: cover;">
+                </div>
+                
+                <!-- Thumbnail Photos -->
+                <% if (animal.photos.length > 1) { %>
+                    <div class="row g-2">
+                        <% animal.photos.slice(1, 5).forEach(photo => { %>
+                            <div class="col-3">
+                                <img src="<%= photo %>" class="img-fluid rounded thumbnail-photo" 
+                                     alt="<%= lang === 'ru' ? animal.nameRu : animal.name %>" 
+                                     style="height: 80px; width: 100%; object-fit: cover; cursor: pointer;">
+                            </div>
+                        <% }); %>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+
+        <!-- Animal Details -->
+        <div class="col-lg-6">
+            <div class="animal-details">
+                <!-- Header -->
+                <div class="mb-4">
+                    <h1 class="h2 mb-2"><%= lang === 'ru' ? animal.nameRu : animal.name %></h1>
+                    <div class="mb-3">
+                        <% if (animal.transferType === 'adoption') { %>
+                            <span class="badge bg-success fs-6 me-2">
+                                <i class="fas fa-heart me-1"></i>
+                                <%= lang === 'ru' ? 'Доступно для усыновления' : 'Available for Adoption' %>
+                            </span>
+                        <% } else { %>
+                            <span class="badge bg-primary fs-6 me-2">
+                                <i class="fas fa-shopping-cart me-1"></i>
+                                <%= lang === 'ru' ? 'Продается' : 'For Sale' %>
+                            </span>
+                        <% } %>
+                        <span class="badge bg-secondary fs-6">ID: <%= animal.id %></span>
+                    </div>
+                    
+                    <!-- Price -->
+                    <div class="price-section mb-4">
+                        <% if (animal.price > 0) { %>
+                            <h3 class="text-success mb-0">$<%= animal.price %></h3>
+                        <% } else { %>
+                            <h3 class="text-success mb-0">
+                                <i class="fas fa-heart me-2"></i>
+                                <%= lang === 'ru' ? 'Бесплатное усыновление' : 'Free Adoption' %>
+                            </h3>
+                        <% } %>
+                    </div>
+                </div>
+
+                <!-- Basic Info -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <%= lang === 'ru' ? 'Основная информация' : 'Basic Information' %>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <strong><%= lang === 'ru' ? 'Вид:' : 'Species:' %></strong><br>
+                                <span class="text-muted"><%= lang === 'ru' ? animal.speciesRu : animal.species %></span>
+                            </div>
+                            <div class="col-6">
+                                <strong><%= lang === 'ru' ? 'Порода:' : 'Breed:' %></strong><br>
+                                <span class="text-muted"><%= lang === 'ru' ? animal.breedRu : animal.breed %></span>
+                            </div>
+                            <div class="col-6">
+                                <strong><%= lang === 'ru' ? 'Возраст:' : 'Age:' %></strong><br>
+                                <span class="text-muted"><%= lang === 'ru' ? animal.ageRu : animal.age %></span>
+                            </div>
+                            <div class="col-6">
+                                <strong><%= lang === 'ru' ? 'Пол:' : 'Gender:' %></strong><br>
+                                <span class="text-muted"><%= lang === 'ru' ? animal.genderRu : animal.gender %></span>
+                            </div>
+                            <% if (animal.weight) { %>
+                            <div class="col-6">
+                                <strong><%= lang === 'ru' ? 'Вес:' : 'Weight:' %></strong><br>
+                                <span class="text-muted"><%= animal.weight %></span>
+                            </div>
+                            <% } %>
+                            <div class="col-12">
+                                <strong><%= lang === 'ru' ? 'Местоположение:' : 'Location:' %></strong><br>
+                                <span class="text-muted">
+                                    <i class="fas fa-map-marker-alt me-1"></i>
+                                    <%= lang === 'ru' ? animal.cityRu : animal.city %>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personality Traits -->
+                <% if (animal.personality && animal.personality.length > 0) { %>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h6 class="mb-0">
+                            <i class="fas fa-heart me-2"></i>
+                            <%= lang === 'ru' ? 'Характер' : 'Personality' %>
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <% (lang === 'ru' ? animal.personalityRu : animal.personality).forEach(trait => { %>
+                            <span class="badge bg-light text-dark me-2 mb-2"><%= trait %></span>
+                        <% }); %>
+                    </div>
+                </div>
+                <% } %>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons mb-4">
+                    <% if (animal.transferType === 'adoption') { %>
+                        <button class="btn btn-success btn-lg me-2 contact-btn" data-bs-toggle="modal" data-bs-target="#contactModal">
+                            <i class="fas fa-heart me-2"></i>
+                            <%= lang === 'ru' ? 'Усыновить ' + animal.nameRu : 'Adopt ' + animal.name %>
+                        </button>
+                    <% } else { %>
+                        <button class="btn btn-primary btn-lg me-2 contact-btn" data-bs-toggle="modal" data-bs-target="#contactModal">
+                            <i class="fas fa-shopping-cart me-2"></i>
+                            <%= lang === 'ru' ? 'Купить ' + animal.nameRu : 'Buy ' + animal.name %>
+                        </button>
+                    <% } %>
+                    
+                    <button class="btn btn-outline-secondary btn-lg me-2" onclick="toggleFavorite('<%= animal.id %>')">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <button class="btn btn-outline-secondary btn-lg" onclick="shareAnimal('<%= animal.id %>', '<%= lang === 'ru' ? animal.nameRu : animal.name %>')">
+                        <i class="fas fa-share"></i>
+                    </button>
+                </div>
+
+                <!-- Shelter/Owner Info -->
+                <% if (shelter) { %>
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="mb-0">
+                                <% if (shelter.type === 'shelter') { %>
+                                    <i class="fas fa-home me-2"></i>
+                                    <%= lang === 'ru' ? 'Информация о приюте' : 'Shelter Information' %>
+                                <% } else { %>
+                                    <i class="fas fa-user me-2"></i>
+                                    <%= lang === 'ru' ? 'Информация о заводчике' : 'Breeder Information' %>
+                                <% } %>
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <% if (shelter.logo) { %>
+                                    <img src="<%= shelter.logo %>" alt="<%= lang === 'ru' ? shelter.nameRu : shelter.name %>" 
+                                         class="rounded me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                                <% } %>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1"><%= lang === 'ru' ? shelter.nameRu : shelter.name %></h6>
+                                    <div class="mb-2">
+                                        <% for (let i = 0; i < 5; i++) { %>
+                                            <i class="fas fa-star <%= i < Math.floor(shelter.rating) ? 'text-warning' : 'text-muted' %>"></i>
+                                        <% } %>
+                                        <span class="ms-2 text-muted">(<%= shelter.reviews %> <%= lang === 'ru' ? 'отзывов' : 'reviews' %>)</span>
+                                    </div>
+                                    <p class="text-muted small mb-0">
+                                        <%= lang === 'ru' ? shelter.descriptionRu : shelter.description %>
+                                    </p>
+                                </div>
+                                <div>
+                                    <a href="/shelter/<%= shelter.id %>" class="btn btn-outline-primary btn-sm">
+                                        <%= lang === 'ru' ? 'Профиль' : 'View Profile' %>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Information -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#description" role="tab">
+                                <%= lang === 'ru' ? 'Описание' : 'Description' %>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#health" role="tab">
+                                <%= lang === 'ru' ? 'Здоровье' : 'Health Info' %>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#conditions" role="tab">
+                                <%= lang === 'ru' ? 'Условия' : 'Adoption Conditions' %>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <!-- Description Tab -->
+                        <div class="tab-pane fade show active" id="description" role="tabpanel">
+                            <h5><%= lang === 'ru' ? 'О ' + animal.nameRu : 'About ' + animal.name %></h5>
+                            <p><%= lang === 'ru' ? animal.descriptionRu : animal.description %></p>
+                        </div>
+                        
+                        <!-- Health Tab -->
+                        <div class="tab-pane fade" id="health" role="tabpanel">
+                            <h5><%= lang === 'ru' ? 'Информация о здоровье' : 'Health Information' %></h5>
+                            <p><%= lang === 'ru' ? animal.healthRu : animal.health %></p>
+                        </div>
+                        
+                        <!-- Conditions Tab -->
+                        <div class="tab-pane fade" id="conditions" role="tabpanel">
+                            <h5><%= lang === 'ru' ? 'Условия усыновления/передачи' : 'Adoption/Transfer Conditions' %></h5>
+                            <p><%= lang === 'ru' ? animal.conditionsRu : animal.conditions %></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Modal -->
+<div class="modal fade" id="contactModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <% if (animal.transferType === 'adoption') { %>
+                        <%= lang === 'ru' ? 'Усыновить ' + animal.nameRu : 'Adopt ' + animal.name %>
+                    <% } else { %>
+                        <%= lang === 'ru' ? 'Купить ' + animal.nameRu : 'Purchase ' + animal.name %>
+                    <% } %>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <% if (!user) { %>
+                    <div class="text-center py-4">
+                        <i class="fas fa-user-lock fa-3x text-muted mb-3"></i>
+                        <h5><%= lang === 'ru' ? 'Требуется авторизация' : 'Login Required' %></h5>
+                        <p class="text-muted mb-4">
+                            <%= lang === 'ru' ? 'Пожалуйста, войдите в систему или зарегистрируйтесь, чтобы связаться с владельцем.' : 'Please login or register to contact the owner.' %>
+                        </p>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            <a href="/login" class="btn btn-primary me-md-2">
+                                <%= lang === 'ru' ? 'Войти' : 'Login' %>
+                            </a>
+                            <a href="/register" class="btn btn-outline-primary">
+                                <%= lang === 'ru' ? 'Регистрация' : 'Register' %>
+                            </a>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <form data-animal-id="<%= animal.id %>">
+                        <div class="mb-3">
+                            <label class="form-label"><%= lang === 'ru' ? 'Ваше имя' : 'Your Name' %></label>
+                            <input type="text" class="form-control" value="<%= user.name %>" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><%= lang === 'ru' ? 'Ваш Email' : 'Your Email' %></label>
+                            <input type="email" class="form-control" value="<%= user.email %>" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><%= lang === 'ru' ? 'Сообщение' : 'Message' %></label>
+                            <textarea class="form-control" name="message" rows="4" 
+                                      placeholder="<%= lang === 'ru' ? 'Расскажите, почему вы хотели бы усыновить/купить это животное...' : 'Tell us why you\'d like to adopt/buy this animal...' %>" 
+                                      required></textarea>
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="button" class="btn btn-secondary me-md-2" data-bs-dismiss="modal">
+                                <%= lang === 'ru' ? 'Отмена' : 'Cancel' %>
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane me-2"></i>
+                                <%= lang === 'ru' ? 'Отправить сообщение' : 'Send Message' %>
+                            </button>
+                        </div>
+                    </form>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('partials/footer') %>

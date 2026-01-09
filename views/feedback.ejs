@@ -1,0 +1,177 @@
+<%- include('partials/header', { title: lang === 'ru' ? 'Отзывы - Рынок Животных' : 'Feedback - Animal Marketplace' }) %>
+
+<div class="container py-5">
+    <!-- Page Header -->
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <h1 class="h2 mb-3">
+                <i class="fas fa-comments text-primary me-3"></i>
+                <%= lang === 'ru' ? 'Ваши отзывы важны для нас' : 'Your Feedback Matters to Us' %>
+            </h1>
+            <p class="lead text-muted">
+                <%= lang === 'ru' ? 'Помогите нам улучшить платформу для животных и их будущих семей' : 'Help us improve our platform for animals and their future families' %>
+            </p>
+        </div>
+    </div>
+
+    <% if (success) { %>
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="fas fa-check-circle me-2"></i>
+                    <%= lang === 'ru' ? 'Спасибо за ваш отзыв! Мы ценим ваше мнение.' : 'Thank you for your feedback! We appreciate your input.' %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            </div>
+        </div>
+    <% } %>
+
+    <div class="row">
+        <!-- Feedback Form -->
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-star me-2"></i>
+                        <%= lang === 'ru' ? 'Оставить отзыв' : 'Leave Your Feedback' %>
+                    </h4>
+                </div>
+                <div class="card-body p-4">
+                    <form action="/feedback" method="POST">
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">
+                                    <%= lang === 'ru' ? 'Ваше имя *' : 'Your Name *' %>
+                                </label>
+                                <input type="text" class="form-control" id="name" name="name" 
+                                       value="<%= user ? user.name : '' %>" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">
+                                    <%= lang === 'ru' ? 'Email *' : 'Email *' %>
+                                </label>
+                                <input type="email" class="form-control" id="email" name="email" 
+                                       value="<%= user ? user.email : '' %>" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="subject" class="form-label">
+                                <%= lang === 'ru' ? 'Тема *' : 'Subject *' %>
+                            </label>
+                            <select class="form-select" id="subject" name="subject" required>
+                                <option value=""><%= lang === 'ru' ? 'Выберите тему' : 'Select a subject' %></option>
+                                <option value="general"><%= lang === 'ru' ? 'Общий отзыв' : 'General Feedback' %></option>
+                                <option value="website"><%= lang === 'ru' ? 'Работа сайта' : 'Website Functionality' %></option>
+                                <option value="animals"><%= lang === 'ru' ? 'Животные и приюты' : 'Animals & Shelters' %></option>
+                                <option value="suggestion"><%= lang === 'ru' ? 'Предложение' : 'Suggestion' %></option>
+                                <option value="complaint"><%= lang === 'ru' ? 'Жалоба' : 'Complaint' %></option>
+                                <option value="other"><%= lang === 'ru' ? 'Другое' : 'Other' %></option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">
+                                <%= lang === 'ru' ? 'Оценка *' : 'Rating *' %>
+                            </label>
+                            <div class="rating-stars">
+                                <input type="radio" name="rating" value="5" id="star5" required>
+                                <label for="star5" class="star"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="rating" value="4" id="star4">
+                                <label for="star4" class="star"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="rating" value="3" id="star3">
+                                <label for="star3" class="star"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="rating" value="2" id="star2">
+                                <label for="star2" class="star"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="rating" value="1" id="star1">
+                                <label for="star1" class="star"><i class="fas fa-star"></i></label>
+                            </div>
+                            <small class="form-text text-muted">
+                                <%= lang === 'ru' ? 'Нажмите на звезды для оценки (5 - отлично, 1 - плохо)' : 'Click on stars to rate (5 - excellent, 1 - poor)' %>
+                            </small>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="message" class="form-label">
+                                <%= lang === 'ru' ? 'Ваш отзыв *' : 'Your Feedback *' %>
+                            </label>
+                            <textarea class="form-control" id="message" name="message" rows="6" 
+                                      placeholder="<%= lang === 'ru' ? 'Расскажите нам о вашем опыте использования платформы...' : 'Tell us about your experience with our platform...' %>" 
+                                      required></textarea>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="/" class="btn btn-outline-secondary me-md-2">
+                                <%= lang === 'ru' ? 'Отмена' : 'Cancel' %>
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane me-2"></i>
+                                <%= lang === 'ru' ? 'Отправить отзыв' : 'Send Feedback' %>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card bg-light">
+                <div class="card-body text-center py-4">
+                    <h5 class="mb-3">
+                        <%= lang === 'ru' ? 'Другие способы связи' : 'Other Ways to Reach Us' %>
+                    </h5>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <i class="fas fa-envelope fa-2x text-primary mb-2"></i>
+                            <h6><%= lang === 'ru' ? 'Email' : 'Email' %></h6>
+                            <p class="text-muted">feedback@animalmarket.com</p>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <i class="fas fa-phone fa-2x text-primary mb-2"></i>
+                            <h6><%= lang === 'ru' ? 'Телефон' : 'Phone' %></h6>
+                            <p class="text-muted">+1-555-ANIMALS</p>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <i class="fas fa-clock fa-2x text-primary mb-2"></i>
+                            <h6><%= lang === 'ru' ? 'Часы работы' : 'Business Hours' %></h6>
+                            <p class="text-muted">
+                                <%= lang === 'ru' ? 'Пн-Пт: 9:00-18:00' : 'Mon-Fri: 9AM-6PM' %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.rating-stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.rating-stars input[type="radio"] {
+    display: none;
+}
+
+.rating-stars .star {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #ddd;
+    transition: color 0.2s;
+}
+
+.rating-stars input[type="radio"]:checked ~ .star,
+.rating-stars .star:hover,
+.rating-stars .star:hover ~ .star {
+    color: #ffc107;
+}
+</style>
+
+<%- include('partials/footer') %>

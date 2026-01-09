@@ -1,0 +1,270 @@
+<%- include('partials/header', { title: shelter.name + ' - Animal Marketplace' }) %>
+
+<div class="container py-4">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/shelters">Shelters & Breeders</a></li>
+            <li class="breadcrumb-item active"><%= shelter.name %></li>
+        </ol>
+    </nav>
+
+    <!-- Shelter Header -->
+    <div class="row mb-5">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body p-4">
+                    <div class="row">
+                        <div class="col-md-3 text-center mb-3">
+                            <!-- Shelter Logo/Image -->
+                            <div class="bg-light rounded p-4 mb-3" style="height: 150px; display: flex; align-items: center; justify-content: center;">
+                                <% if (shelter.type === 'shelter') { %>
+                                    <i class="fas fa-home fa-4x text-primary"></i>
+                                <% } else { %>
+                                    <i class="fas fa-award fa-4x text-primary"></i>
+                                <% } %>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-9">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h1 class="h3 mb-2"><%= shelter.name %></h1>
+                                    <% if (shelter.type === 'shelter') { %>
+                                        <span class="badge bg-success fs-6 me-2">
+                                            <i class="fas fa-home me-1"></i>Animal Shelter
+                                        </span>
+                                    <% } else { %>
+                                        <span class="badge bg-primary fs-6 me-2">
+                                            <i class="fas fa-award me-1"></i>Professional Breeder
+                                        </span>
+                                    <% } %>
+                                    <span class="badge bg-secondary fs-6">Verified</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Rating -->
+                            <div class="mb-3">
+                                <% for (let i = 0; i < 5; i++) { %>
+                                    <i class="fas fa-star <%= i < Math.floor(shelter.rating) ? 'text-warning' : 'text-muted' %>"></i>
+                                <% } %>
+                                <span class="ms-2 h6 mb-0"><%= shelter.rating %></span>
+                                <span class="text-muted">(<%= shelter.reviews %> reviews)</span>
+                            </div>
+                            
+                            <!-- Location -->
+                            <p class="text-muted mb-3">
+                                <i class="fas fa-map-marker-alt me-2"></i><%= shelter.city %>
+                            </p>
+                            
+                            <!-- Description -->
+                            <p class="mb-3"><%= shelter.description %></p>
+                            
+                            <!-- Contact Info -->
+                            <div class="mb-3">
+                                <strong>Contact:</strong>
+                                <a href="mailto:<%= shelter.contact %>" class="ms-2"><%= shelter.contact %></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <!-- Quick Stats -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h6 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Quick Stats</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h4 class="mb-1 text-primary"><%= animals.length %></h4>
+                                <small class="text-muted">Available Animals</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h4 class="mb-1 text-success">0</h4>
+                                <small class="text-muted">Successful Adoptions</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h4 class="mb-1 text-info"><%= shelter.rating %></h4>
+                                <small class="text-muted">Average Rating</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h4 class="mb-1 text-warning">2</h4>
+                                <small class="text-muted">Years Active</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="mb-0"><i class="fas fa-envelope me-2"></i>Contact Information</h6>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <strong>Email:</strong><br>
+                        <a href="mailto:<%= shelter.contact %>"><%= shelter.contact %></a>
+                    </div>
+                    <div class="mb-3">
+                        <strong>Location:</strong><br>
+                        <%= shelter.city %>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactModal">
+                            <i class="fas fa-envelope me-2"></i>Send Message
+                        </button>
+                        <button class="btn btn-outline-secondary">
+                            <i class="fas fa-phone me-2"></i>Call Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Available Animals -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0"><i class="fas fa-paw me-2"></i>Available Animals (<%= animals.length %>)</h5>
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-outline-secondary active" id="gridViewBtn">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="btn btn-outline-secondary" id="listViewBtn">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <% if (animals.length === 0) { %>
+                        <div class="text-center py-5">
+                            <i class="fas fa-paw fa-3x text-muted mb-3"></i>
+                            <h5>No animals available</h5>
+                            <p class="text-muted">This shelter doesn't have any animals listed at the moment.</p>
+                        </div>
+                    <% } else { %>
+                        <div class="row g-4" id="animalsGrid">
+                            <% animals.forEach(animal => { %>
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="animal-card card h-100 shadow-sm">
+                                        <div class="position-relative">
+                                            <img src="<%= animal.photos[0] || '/images/placeholder-pet.jpg' %>" 
+                                                 class="card-img-top" alt="<%= animal.name %>" 
+                                                 style="height: 250px; object-fit: cover;">
+                                            
+                                            <!-- Transfer Type Badge -->
+                                            <% if (animal.transferType === 'adoption') { %>
+                                                <span class="badge bg-success position-absolute top-0 start-0 m-2">
+                                                    <i class="fas fa-heart me-1"></i>Adoption
+                                                </span>
+                                            <% } else { %>
+                                                <span class="badge bg-primary position-absolute top-0 start-0 m-2">
+                                                    <i class="fas fa-shopping-cart me-1"></i>Sale
+                                                </span>
+                                            <% } %>
+                                        </div>
+                                        
+                                        <div class="card-body">
+                                            <h5 class="card-title"><%= animal.name %></h5>
+                                            <p class="text-muted mb-2">
+                                                <strong><%= animal.breed %></strong> • <%= animal.gender %> • <%= animal.age %>
+                                            </p>
+                                            <p class="card-text text-truncate"><%= animal.description %></p>
+                                            
+                                            <!-- Price -->
+                                            <div class="mb-2">
+                                                <% if (animal.price > 0) { %>
+                                                    <span class="h5 text-success mb-0">$<%= animal.price %></span>
+                                                <% } else { %>
+                                                    <span class="h5 text-success mb-0">
+                                                        <i class="fas fa-heart me-1"></i>Free
+                                                    </span>
+                                                <% } %>
+                                            </div>
+                                            
+                                            <!-- Location -->
+                                            <p class="text-muted small mb-0">
+                                                <i class="fas fa-map-marker-alt me-1"></i><%= animal.city %>
+                                            </p>
+                                        </div>
+                                        
+                                        <div class="card-footer bg-transparent">
+                                            <div class="d-grid gap-2">
+                                                <a href="/animal/<%= animal.id %>" class="btn btn-primary">
+                                                    View Details
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }); %>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Modal -->
+<div class="modal fade" id="contactModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Contact <%= shelter.name %></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <% if (!user) { %>
+                    <p>Please <a href="/login">login</a> or <a href="/register">register</a> to contact this shelter.</p>
+                <% } else { %>
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Your Name</label>
+                            <input type="text" class="form-control" value="<%= user.name %>" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Your Email</label>
+                            <input type="email" class="form-control" value="<%= user.email %>" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Subject</label>
+                            <select class="form-select">
+                                <option>General Inquiry</option>
+                                <option>Adoption Interest</option>
+                                <option>Volunteer Opportunity</option>
+                                <option>Donation</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control" rows="4" placeholder="Your message..."></textarea>
+                        </div>
+                    </form>
+                <% } %>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <% if (user) { %>
+                    <button type="button" class="btn btn-primary">Send Message</button>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('partials/footer') %>

@@ -1,0 +1,184 @@
+<%- include('partials/header', { title: 'Browse Animals - Animal Marketplace' }) %>
+
+<!-- Page Header -->
+<section class="py-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="h3 mb-0">Browse Animals</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active">Catalog</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container py-4">
+    <div class="row">
+        <!-- Filters Sidebar -->
+        <div class="col-lg-3 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-filter me-2"></i>Filters</h5>
+                </div>
+                <div class="card-body">
+                    <form action="/catalog" method="GET">
+                        <!-- Animal Type -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Animal Type</label>
+                            <select name="species" class="form-select">
+                                <option value="">All Animals</option>
+                                <option value="dog" <%= filters.species === 'dog' ? 'selected' : '' %>>Dogs</option>
+                                <option value="cat" <%= filters.species === 'cat' ? 'selected' : '' %>>Cats</option>
+                                <option value="bird" <%= filters.species === 'bird' ? 'selected' : '' %>>Birds</option>
+                                <option value="rabbit" <%= filters.species === 'rabbit' ? 'selected' : '' %>>Rabbits</option>
+                                <option value="other" <%= filters.species === 'other' ? 'selected' : '' %>>Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Transfer Type -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Transfer Type</label>
+                            <select name="transferType" class="form-select">
+                                <option value="">Any Type</option>
+                                <option value="adoption" <%= filters.transferType === 'adoption' ? 'selected' : '' %>>Adoption (Free)</option>
+                                <option value="sale" <%= filters.transferType === 'sale' ? 'selected' : '' %>>Purchase</option>
+                            </select>
+                        </div>
+
+                        <!-- City -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">City</label>
+                            <input type="text" name="city" class="form-control" placeholder="Enter city" value="<%= filters.city || '' %>">
+                        </div>
+
+                        <!-- Sort -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Sort By</label>
+                            <select name="sort" class="form-select">
+                                <option value="">Default</option>
+                                <option value="date" <%= filters.sort === 'date' ? 'selected' : '' %>>Newest First</option>
+                                <option value="price" <%= filters.sort === 'price' ? 'selected' : '' %>>Price: Low to High</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Apply Filters</button>
+                        <a href="/catalog" class="btn btn-outline-secondary w-100 mt-2">Clear All</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Animals Grid -->
+        <div class="col-lg-9">
+            <!-- Results Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5><%= animals.length %> animals found</h5>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-secondary active" id="gridView">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary" id="listView">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Animals Grid -->
+            <div class="row g-4" id="animalsGrid">
+                <% if (animals.length === 0) { %>
+                    <div class="col-12">
+                        <div class="text-center py-5">
+                            <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                            <h4>No animals found</h4>
+                            <p class="text-muted">Try adjusting your filters or search criteria.</p>
+                            <a href="/catalog" class="btn btn-primary">View All Animals</a>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <% animals.forEach(animal => { %>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="animal-card card h-100 shadow-sm">
+                                <div class="position-relative">
+                                    <img src="<%= animal.photos[0] || '/images/placeholder-pet.jpg' %>" 
+                                         class="card-img-top" alt="<%= animal.name %>" 
+                                         style="height: 250px; object-fit: cover;">
+                                    
+                                    <!-- Transfer Type Badge -->
+                                    <% if (animal.transferType === 'adoption') { %>
+                                        <span class="badge bg-success position-absolute top-0 start-0 m-2">
+                                            <i class="fas fa-heart me-1"></i>Adoption
+                                        </span>
+                                    <% } else { %>
+                                        <span class="badge bg-primary position-absolute top-0 start-0 m-2">
+                                            <i class="fas fa-shopping-cart me-1"></i>Sale
+                                        </span>
+                                    <% } %>
+                                </div>
+                                
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= animal.name %></h5>
+                                    <p class="text-muted mb-2">
+                                        <strong><%= animal.breed %></strong> • <%= animal.gender %> • <%= animal.age %>
+                                    </p>
+                                    <p class="card-text text-truncate"><%= animal.description %></p>
+                                    
+                                    <!-- Price -->
+                                    <div class="mb-2">
+                                        <% if (animal.price > 0) { %>
+                                            <span class="h5 text-success mb-0">$<%= animal.price %></span>
+                                        <% } else { %>
+                                            <span class="h5 text-success mb-0">
+                                                <i class="fas fa-heart me-1"></i>Free
+                                            </span>
+                                        <% } %>
+                                    </div>
+                                    
+                                    <!-- Location -->
+                                    <p class="text-muted small mb-0">
+                                        <i class="fas fa-map-marker-alt me-1"></i><%= animal.city %>
+                                    </p>
+                                </div>
+                                
+                                <div class="card-footer bg-transparent">
+                                    <div class="d-grid gap-2">
+                                        <a href="/animal/<%= animal.id %>" class="btn btn-primary">
+                                            View Details
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } %>
+            </div>
+
+            <!-- Pagination (placeholder) -->
+            <nav aria-label="Animals pagination" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

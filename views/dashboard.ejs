@@ -1,0 +1,206 @@
+<%- include('partials/header', { title: 'Dashboard - Animal Marketplace' }) %>
+
+<div class="container py-4">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="h3 mb-0">Dashboard</h1>
+            <p class="text-muted">Welcome back, <%= user.name %>!</p>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="mb-0"><%= animals.length %></h4>
+                            <p class="mb-0">My Listings</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-paw fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="mb-0"><%= animals.filter(a => a.status === 'available').length %></h4>
+                            <p class="mb-0">Active</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-check-circle fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="mb-0"><%= animals.filter(a => a.status === 'pending_approval').length %></h4>
+                            <p class="mb-0">Pending</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-clock fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="mb-0">0</h4>
+                            <p class="mb-0">Messages</p>
+                        </div>
+                        <div class="align-self-center">
+                            <i class="fas fa-envelope fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <a href="/add-animal" class="btn btn-primary w-100">
+                                <i class="fas fa-plus me-2"></i>Add New Animal
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="/catalog" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-search me-2"></i>Browse Animals
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-outline-secondary w-100">
+                                <i class="fas fa-envelope me-2"></i>Messages
+                            </button>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-outline-secondary w-100">
+                                <i class="fas fa-cog me-2"></i>Settings
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- My Animals -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">My Animals</h5>
+                    <a href="/add-animal" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus me-1"></i>Add Animal
+                    </a>
+                </div>
+                <div class="card-body">
+                    <% if (animals.length === 0) { %>
+                        <div class="text-center py-5">
+                            <i class="fas fa-paw fa-3x text-muted mb-3"></i>
+                            <h5>No animals listed yet</h5>
+                            <p class="text-muted">Start by adding your first animal listing.</p>
+                            <a href="/add-animal" class="btn btn-primary">Add Your First Animal</a>
+                        </div>
+                    <% } else { %>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Photo</th>
+                                        <th>Name</th>
+                                        <th>Species/Breed</th>
+                                        <th>Type</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% animals.forEach(animal => { %>
+                                        <tr>
+                                            <td>
+                                                <img src="<%= animal.photos[0] || '/images/placeholder-pet.jpg' %>" 
+                                                     alt="<%= animal.name %>" class="rounded" 
+                                                     style="width: 50px; height: 50px; object-fit: cover;">
+                                            </td>
+                                            <td>
+                                                <strong><%= animal.name %></strong><br>
+                                                <small class="text-muted"><%= animal.age %> • <%= animal.gender %></small>
+                                            </td>
+                                            <td>
+                                                <%= animal.species %><br>
+                                                <small class="text-muted"><%= animal.breed %></small>
+                                            </td>
+                                            <td>
+                                                <% if (animal.transferType === 'adoption') { %>
+                                                    <span class="badge bg-success">Adoption</span>
+                                                <% } else { %>
+                                                    <span class="badge bg-primary">Sale</span>
+                                                <% } %>
+                                            </td>
+                                            <td>
+                                                <% if (animal.price > 0) { %>
+                                                    $<%= animal.price %>
+                                                <% } else { %>
+                                                    <span class="text-success">Free</span>
+                                                <% } %>
+                                            </td>
+                                            <td>
+                                                <% if (animal.status === 'available') { %>
+                                                    <span class="badge bg-success">Active</span>
+                                                <% } else if (animal.status === 'pending_approval') { %>
+                                                    <span class="badge bg-warning">Pending</span>
+                                                <% } else { %>
+                                                    <span class="badge bg-secondary">Inactive</span>
+                                                <% } %>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group btn-group-sm">
+                                                    <a href="/animal/<%= animal.id %>" class="btn btn-outline-primary">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <button class="btn btn-outline-secondary">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <% }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('partials/footer') %>
