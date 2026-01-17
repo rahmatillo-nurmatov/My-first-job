@@ -174,7 +174,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold text-primary" href="#home">
-                <i class="fas fa-paw me-2"></i><span id="brandName">AnimalMarket</span>
+                <i class="fas fa-code me-2"></i><span id="brandName">MyFirstJob</span>
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -187,13 +187,16 @@
                         <a class="nav-link" href="#home" data-translate="nav-home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#catalog" data-translate="nav-animals">Browse Animals</a>
+                        <a class="nav-link" href="#about" data-translate="nav-about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#shelters" data-translate="nav-shelters">Shelters & Breeders</a>
+                        <a class="nav-link" href="#projects" data-translate="nav-projects">Projects</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#feedback" data-translate="nav-feedback">Feedback</a>
+                        <a class="nav-link" href="#skills" data-translate="nav-skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact" data-translate="nav-contact">Contact</a>
                     </li>
                 </ul>
                 
@@ -248,279 +251,134 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <h1 class="display-4 fw-bold mb-4">Find Your Perfect Companion</h1>
-                        <p class="lead mb-4">Discover loving animals from shelters and trusted breeders. Every pet deserves a loving home.</p>
-                        <a href="#catalog" class="btn btn-light btn-lg me-3">Browse Animals</a>
-                        <a href="#shelters" class="btn btn-outline-light btn-lg">Find Shelters</a>
+                        <h1 class="display-4 fw-bold mb-4">Welcome to My First Job</h1>
+                        <p class="lead mb-4">A showcase of my web development journey. This project demonstrates my skills in HTML, CSS, JavaScript, and modern web technologies.</p>
+                        <a href="#projects" class="btn btn-light btn-lg me-3">View Projects</a>
+                        <a href="#about" class="btn btn-outline-light btn-lg">About Me</a>
                     </div>
                     <div class="col-lg-6">
                         <div class="placeholder-img rounded shadow" style="height: 400px;">
-                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-laptop-code"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Search Section -->
-        <section class="py-4 bg-light">
+        <!-- About Section -->
+        <section id="about" class="py-5">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="search-box bg-white p-4 rounded shadow">
-                            <form onsubmit="handleSearch(event)" class="row g-3">
-                                <div class="col-md-4">
-                                    <select name="species" class="form-select">
-                                        <option value="">All Animals</option>
-                                        <option value="dog">Dogs</option>
-                                        <option value="cat">Cats</option>
-                                        <option value="bird">Birds</option>
-                                        <option value="rabbit">Rabbits</option>
-                                        <option value="other">Other</option>
-                                    </select>
+                    <div class="col-lg-8 text-center">
+                        <h2 class="mb-4">About This Project</h2>
+                        <p class="lead mb-4">
+                            "My First Job" is a web development portfolio project that showcases modern web technologies 
+                            and responsive design principles. Built with HTML5, CSS3, JavaScript, and Bootstrap 5.
+                        </p>
+                        <div class="row g-4 mt-4">
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <i class="fas fa-code fa-3x text-primary mb-3"></i>
+                                    <h5>Clean Code</h5>
+                                    <p>Well-structured, semantic HTML and organized CSS</p>
                                 </div>
-                                <div class="col-md-3">
-                                    <select name="transferType" class="form-select">
-                                        <option value="">Any Type</option>
-                                        <option value="adoption">Adoption</option>
-                                        <option value="sale">Purchase</option>
-                                    </select>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <i class="fas fa-mobile-alt fa-3x text-primary mb-3"></i>
+                                    <h5>Responsive Design</h5>
+                                    <p>Optimized for all devices and screen sizes</p>
                                 </div>
-                                <div class="col-md-3">
-                                    <input type="text" name="city" class="form-control" placeholder="City">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <i class="fas fa-rocket fa-3x text-primary mb-3"></i>
+                                    <h5>Modern Tech</h5>
+                                    <p>Built with latest web standards and best practices</p>
                                 </div>
-                                <div class="col-md-2">
-                                    <button type="submit" class="btn btn-primary w-100">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Categories Section -->
-        <section class="py-5">
+        <!-- Projects Section -->
+        <section id="projects" class="py-5 bg-light">
             <div class="container">
-                <h2 class="text-center mb-5">Browse by Category</h2>
-                <div class="row g-4">
-                    <div class="col-md-3">
-                        <a href="#catalog" class="text-decoration-none">
-                            <div class="category-card text-center p-4 rounded shadow-sm h-100">
-                                <i class="fas fa-dog fa-3x text-primary mb-3"></i>
-                                <h5>Dogs</h5>
-                                <p class="text-muted">Find loyal companions</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="#catalog" class="text-decoration-none">
-                            <div class="category-card text-center p-4 rounded shadow-sm h-100">
-                                <i class="fas fa-cat fa-3x text-primary mb-3"></i>
-                                <h5>Cats</h5>
-                                <p class="text-muted">Independent friends</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="#catalog" class="text-decoration-none">
-                            <div class="category-card text-center p-4 rounded shadow-sm h-100">
-                                <i class="fas fa-dove fa-3x text-primary mb-3"></i>
-                                <h5>Birds</h5>
-                                <p class="text-muted">Colorful companions</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="#catalog" class="text-decoration-none">
-                            <div class="category-card text-center p-4 rounded shadow-sm h-100">
-                                <i class="fas fa-rabbit fa-3x text-primary mb-3"></i>
-                                <h5>Small Pets</h5>
-                                <p class="text-muted">Rabbits, hamsters & more</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Featured Collections -->
-        <section id="catalog" class="py-5 bg-light">
-            <div class="container">
-                <!-- Animals from Shelters -->
+                <h2 class="text-center mb-5">Featured Projects</h2>
+                
+                <!-- Web Development Projects -->
                 <div class="mb-5">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h3><i class="fas fa-heart text-danger me-2"></i>Animals from Shelters</h3>
-                        <a href="#catalog" class="btn btn-outline-primary">View All</a>
+                        <h3><i class="fas fa-globe text-primary me-2"></i>Web Development</h3>
                     </div>
                     <div class="row g-4">
-                        <!-- Sample Animal 1 -->
-                        <div class="col-md-3">
-                            <div class="animal-card card h-100 shadow-sm">
+                        <!-- Project 1 -->
+                        <div class="col-md-4">
+                            <div class="card h-100 shadow-sm">
                                 <div class="placeholder-img" style="height: 200px;">
-                                    <i class="fas fa-dog"></i>
+                                    <i class="fas fa-shopping-cart"></i>
                                 </div>
                                 <div class="card-body">
-                                    <h6 class="card-title">Buddy</h6>
-                                    <p class="text-muted small mb-2">Golden Retriever • 2 years</p>
-                                    <p class="text-success fw-bold mb-2">
-                                        <i class="fas fa-heart me-1"></i>Free Adoption
-                                    </p>
-                                    <p class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i>New York</p>
+                                    <h6 class="card-title">Animal Marketplace</h6>
+                                    <p class="text-muted small mb-2">Full-Stack Web Application</p>
+                                    <p class="card-text">Complete marketplace platform with user authentication, file uploads, and responsive design.</p>
+                                    <div class="mb-2">
+                                        <span class="badge bg-primary me-1">Node.js</span>
+                                        <span class="badge bg-secondary me-1">Express</span>
+                                        <span class="badge bg-success me-1">Bootstrap</span>
+                                    </div>
                                 </div>
                                 <div class="card-footer bg-transparent">
-                                    <a href="#animal-profile" class="btn btn-primary btn-sm w-100">View Details</a>
+                                    <a href="demo.html" class="btn btn-primary btn-sm me-2">Live Demo</a>
+                                    <a href="#" class="btn btn-outline-primary btn-sm">Code</a>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Sample Animal 2 -->
-                        <div class="col-md-3">
-                            <div class="animal-card card h-100 shadow-sm">
+                        <!-- Project 2 -->
+                        <div class="col-md-4">
+                            <div class="card h-100 shadow-sm">
                                 <div class="placeholder-img" style="height: 200px;">
-                                    <i class="fas fa-cat"></i>
+                                    <i class="fas fa-mobile-alt"></i>
                                 </div>
                                 <div class="card-body">
-                                    <h6 class="card-title">Whiskers</h6>
-                                    <p class="text-muted small mb-2">Persian • 1 year</p>
-                                    <p class="text-success fw-bold mb-2">
-                                        <i class="fas fa-heart me-1"></i>Free Adoption
-                                    </p>
-                                    <p class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Los Angeles</p>
+                                    <h6 class="card-title">Responsive Portfolio</h6>
+                                    <p class="text-muted small mb-2">Frontend Development</p>
+                                    <p class="card-text">Modern, responsive portfolio website showcasing web development skills and projects.</p>
+                                    <div class="mb-2">
+                                        <span class="badge bg-warning me-1">HTML5</span>
+                                        <span class="badge bg-info me-1">CSS3</span>
+                                        <span class="badge bg-danger me-1">JavaScript</span>
+                                    </div>
                                 </div>
                                 <div class="card-footer bg-transparent">
-                                    <a href="#animal-profile" class="btn btn-primary btn-sm w-100">View Details</a>
+                                    <a href="#" class="btn btn-primary btn-sm me-2">Live Demo</a>
+                                    <a href="#" class="btn btn-outline-primary btn-sm">Code</a>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Sample Animal 3 -->
-                        <div class="col-md-3">
-                            <div class="animal-card card h-100 shadow-sm">
+                        <!-- Project 3 -->
+                        <div class="col-md-4">
+                            <div class="card h-100 shadow-sm">
                                 <div class="placeholder-img" style="height: 200px;">
-                                    <i class="fas fa-dog"></i>
+                                    <i class="fas fa-chart-bar"></i>
                                 </div>
                                 <div class="card-body">
-                                    <h6 class="card-title">Charlie</h6>
-                                    <p class="text-muted small mb-2">Labrador • 3 months</p>
-                                    <p class="text-success fw-bold mb-2">
-                                        <i class="fas fa-heart me-1"></i>Free Adoption
-                                    </p>
-                                    <p class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Chicago</p>
+                                    <h6 class="card-title">Interactive Dashboard</h6>
+                                    <p class="text-muted small mb-2">Data Visualization</p>
+                                    <p class="card-text">Dynamic dashboard with charts, graphs, and real-time data updates using modern JavaScript.</p>
+                                    <div class="mb-2">
+                                        <span class="badge bg-success me-1">Chart.js</span>
+                                        <span class="badge bg-primary me-1">API</span>
+                                        <span class="badge bg-secondary me-1">JSON</span>
+                                    </div>
                                 </div>
                                 <div class="card-footer bg-transparent">
-                                    <a href="#animal-profile" class="btn btn-primary btn-sm w-100">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Sample Animal 4 -->
-                        <div class="col-md-3">
-                            <div class="animal-card card h-100 shadow-sm">
-                                <div class="placeholder-img" style="height: 200px;">
-                                    <i class="fas fa-dove"></i>
-                                </div>
-                                <div class="card-body">
-                                    <h6 class="card-title">Tweety</h6>
-                                    <p class="text-muted small mb-2">Canary • 6 months</p>
-                                    <p class="text-success fw-bold mb-2">
-                                        <i class="fas fa-heart me-1"></i>Free Adoption
-                                    </p>
-                                    <p class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Miami</p>
-                                </div>
-                                <div class="card-footer bg-transparent">
-                                    <a href="#animal-profile" class="btn btn-primary btn-sm w-100">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Puppies and Kittens -->
-                <div class="mb-5">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h3><i class="fas fa-baby text-warning me-2"></i>Puppies & Kittens</h3>
-                        <a href="#catalog" class="btn btn-outline-primary">View All</a>
-                    </div>
-                    <div class="row g-4">
-                        <!-- Sample Young Animal 1 -->
-                        <div class="col-md-3">
-                            <div class="animal-card card h-100 shadow-sm">
-                                <div class="placeholder-img" style="height: 200px;">
-                                    <i class="fas fa-dog"></i>
-                                </div>
-                                <div class="card-body">
-                                    <h6 class="card-title">Max</h6>
-                                    <p class="text-muted small mb-2">German Shepherd • 2 months</p>
-                                    <p class="fw-bold mb-2">
-                                        <span class="text-success">$800</span>
-                                    </p>
-                                    <p class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Seattle</p>
-                                </div>
-                                <div class="card-footer bg-transparent">
-                                    <a href="#animal-profile" class="btn btn-primary btn-sm w-100">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Sample Young Animal 2 -->
-                        <div class="col-md-3">
-                            <div class="animal-card card h-100 shadow-sm">
-                                <div class="placeholder-img" style="height: 200px;">
-                                    <i class="fas fa-cat"></i>
-                                </div>
-                                <div class="card-body">
-                                    <h6 class="card-title">Luna</h6>
-                                    <p class="text-muted small mb-2">Maine Coon • 3 months</p>
-                                    <p class="fw-bold mb-2">
-                                        <span class="text-success">$600</span>
-                                    </p>
-                                    <p class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Portland</p>
-                                </div>
-                                <div class="card-footer bg-transparent">
-                                    <a href="#animal-profile" class="btn btn-primary btn-sm w-100">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Sample Young Animal 3 -->
-                        <div class="col-md-3">
-                            <div class="animal-card card h-100 shadow-sm">
-                                <div class="placeholder-img" style="height: 200px;">
-                                    <i class="fas fa-dog"></i>
-                                </div>
-                                <div class="card-body">
-                                    <h6 class="card-title">Bella</h6>
-                                    <p class="text-muted small mb-2">Beagle • 4 months</p>
-                                    <p class="fw-bold mb-2">
-                                        <span class="text-success"><i class="fas fa-heart me-1"></i>Free</span>
-                                    </p>
-                                    <p class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Denver</p>
-                                </div>
-                                <div class="card-footer bg-transparent">
-                                    <a href="#animal-profile" class="btn btn-primary btn-sm w-100">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Sample Young Animal 4 -->
-                        <div class="col-md-3">
-                            <div class="animal-card card h-100 shadow-sm">
-                                <div class="placeholder-img" style="height: 200px;">
-                                    <i class="fas fa-cat"></i>
-                                </div>
-                                <div class="card-body">
-                                    <h6 class="card-title">Milo</h6>
-                                    <p class="text-muted small mb-2">British Shorthair • 2 months</p>
-                                    <p class="fw-bold mb-2">
-                                        <span class="text-success">$500</span>
-                                    </p>
-                                    <p class="text-muted small"><i class="fas fa-map-marker-alt me-1"></i>Boston</p>
-                                </div>
-                                <div class="card-footer bg-transparent">
-                                    <a href="#animal-profile" class="btn btn-primary btn-sm w-100">View Details</a>
+                                    <a href="#" class="btn btn-primary btn-sm me-2">Live Demo</a>
+                                    <a href="#" class="btn btn-outline-primary btn-sm">Code</a>
                                 </div>
                             </div>
                         </div>
@@ -529,127 +387,81 @@
             </div>
         </section>
 
-        <!-- Shelters Section -->
-        <section id="shelters" class="py-5">
+        <!-- Skills Section -->
+        <section id="skills" class="py-5">
             <div class="container">
-                <h2 class="text-center mb-5">Featured Shelters & Breeders</h2>
+                <h2 class="text-center mb-5">Technical Skills</h2>
                 <div class="row g-4">
-                    <!-- Sample Shelter 1 -->
+                    <!-- Frontend Skills -->
                     <div class="col-lg-6">
                         <div class="card h-100 shadow-sm">
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <div class="d-flex align-items-start mb-3">
-                                            <div class="flex-grow-1">
-                                                <h5 class="card-title mb-1">Happy Paws Shelter</h5>
-                                                <div class="mb-2">
-                                                    <span class="badge bg-success me-2">
-                                                        <i class="fas fa-home me-1"></i>Animal Shelter
-                                                    </span>
-                                                </div>
-                                                
-                                                <!-- Rating -->
-                                                <div class="mb-2">
-                                                    <i class="fas fa-star text-warning"></i>
-                                                    <i class="fas fa-star text-warning"></i>
-                                                    <i class="fas fa-star text-warning"></i>
-                                                    <i class="fas fa-star text-warning"></i>
-                                                    <i class="fas fa-star text-warning"></i>
-                                                    <span class="ms-2 text-muted">4.8 (156 reviews)</span>
-                                                </div>
-                                                
-                                                <!-- Location -->
-                                                <p class="text-muted mb-2">
-                                                    <i class="fas fa-map-marker-alt me-1"></i>New York
-                                                </p>
-                                                
-                                                <!-- Description -->
-                                                <p class="card-text text-muted">Dedicated to finding loving homes for abandoned animals</p>
-                                            </div>
-                                        </div>
+                                <h5 class="card-title mb-4">
+                                    <i class="fas fa-paint-brush text-primary me-2"></i>Frontend Development
+                                </h5>
+                                <div class="skill-item mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>HTML5 & CSS3</span>
+                                        <span>90%</span>
                                     </div>
-                                    
-                                    <div class="col-md-4 text-center">
-                                        <div class="bg-light rounded p-4 mb-3" style="height: 120px; display: flex; align-items: center; justify-content: center;">
-                                            <i class="fas fa-home fa-3x text-muted"></i>
-                                        </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-primary" style="width: 90%"></div>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <div class="card-footer bg-transparent">
-                                <div class="row g-2">
-                                    <div class="col-6">
-                                        <a href="#shelter-profile" class="btn btn-primary w-100">
-                                            <i class="fas fa-eye me-1"></i>View Profile
-                                        </a>
+                                <div class="skill-item mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>JavaScript</span>
+                                        <span>85%</span>
                                     </div>
-                                    <div class="col-6">
-                                        <button class="btn btn-outline-primary w-100">
-                                            <i class="fas fa-envelope me-1"></i>Contact
-                                        </button>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-warning" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>Bootstrap & Responsive Design</span>
+                                        <span>95%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" style="width: 95%"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Sample Breeder 1 -->
+                    <!-- Backend Skills -->
                     <div class="col-lg-6">
                         <div class="card h-100 shadow-sm">
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <div class="d-flex align-items-start mb-3">
-                                            <div class="flex-grow-1">
-                                                <h5 class="card-title mb-1">Golden Retriever Breeders</h5>
-                                                <div class="mb-2">
-                                                    <span class="badge bg-primary me-2">
-                                                        <i class="fas fa-award me-1"></i>Professional Breeder
-                                                    </span>
-                                                </div>
-                                                
-                                                <!-- Rating -->
-                                                <div class="mb-2">
-                                                    <i class="fas fa-star text-warning"></i>
-                                                    <i class="fas fa-star text-warning"></i>
-                                                    <i class="fas fa-star text-warning"></i>
-                                                    <i class="fas fa-star text-warning"></i>
-                                                    <i class="fas fa-star text-warning"></i>
-                                                    <span class="ms-2 text-muted">4.9 (89 reviews)</span>
-                                                </div>
-                                                
-                                                <!-- Location -->
-                                                <p class="text-muted mb-2">
-                                                    <i class="fas fa-map-marker-alt me-1"></i>Los Angeles
-                                                </p>
-                                                
-                                                <!-- Description -->
-                                                <p class="card-text text-muted">Professional Golden Retriever breeding with health guarantees</p>
-                                            </div>
-                                        </div>
+                                <h5 class="card-title mb-4">
+                                    <i class="fas fa-server text-success me-2"></i>Backend Development
+                                </h5>
+                                <div class="skill-item mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>Node.js & Express</span>
+                                        <span>80%</span>
                                     </div>
-                                    
-                                    <div class="col-md-4 text-center">
-                                        <div class="bg-light rounded p-4 mb-3" style="height: 120px; display: flex; align-items: center; justify-content: center;">
-                                            <i class="fas fa-award fa-3x text-muted"></i>
-                                        </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" style="width: 80%"></div>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <div class="card-footer bg-transparent">
-                                <div class="row g-2">
-                                    <div class="col-6">
-                                        <a href="#shelter-profile" class="btn btn-primary w-100">
-                                            <i class="fas fa-eye me-1"></i>View Profile
-                                        </a>
+                                <div class="skill-item mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>Database Management</span>
+                                        <span>75%</span>
                                     </div>
-                                    <div class="col-6">
-                                        <button class="btn btn-outline-primary w-100">
-                                            <i class="fas fa-envelope me-1"></i>Contact
-                                        </button>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-info" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                                <div class="skill-item mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span>API Development</span>
+                                        <span>70%</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-danger" style="width: 70%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -659,34 +471,34 @@
             </div>
         </section>
 
-        <!-- Call to Action -->
-        <section class="py-5 bg-primary text-white">
+        <!-- Contact Section -->
+        <section id="contact" class="py-5 bg-primary text-white">
             <div class="container text-center">
-                <h2 class="mb-4">Ready to Make a Difference?</h2>
-                <p class="lead mb-4">Join our community of animal lovers and help pets find their forever homes.</p>
+                <h2 class="mb-4">Get In Touch</h2>
+                <p class="lead mb-4">Interested in working together? Let's connect and discuss opportunities.</p>
                 <div class="row justify-content-center">
                     <div class="col-md-4 mb-3">
                         <div class="p-4">
-                            <i class="fas fa-plus-circle fa-2x mb-3"></i>
-                            <h5>List an Animal</h5>
-                            <p>Help an animal find a new home</p>
-                            <a href="#add-animal" class="btn btn-light">Get Started</a>
+                            <i class="fas fa-envelope fa-2x mb-3"></i>
+                            <h5>Email</h5>
+                            <p>your.email@example.com</p>
+                            <a href="mailto:your.email@example.com" class="btn btn-light">Send Email</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="p-4">
-                            <i class="fas fa-search fa-2x mb-3"></i>
-                            <h5>Adopt a Pet</h5>
-                            <p>Find your perfect companion</p>
-                            <a href="#catalog" class="btn btn-light">Browse Now</a>
+                            <i class="fab fa-github fa-2x mb-3"></i>
+                            <h5>GitHub</h5>
+                            <p>View my code repositories</p>
+                            <a href="#" class="btn btn-light">Visit GitHub</a>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="p-4">
-                            <i class="fas fa-home fa-2x mb-3"></i>
-                            <h5>Support Shelters</h5>
-                            <p>Help local animal shelters</p>
-                            <a href="#shelters" class="btn btn-light">Find Shelters</a>
+                            <i class="fab fa-linkedin fa-2x mb-3"></i>
+                            <h5>LinkedIn</h5>
+                            <p>Professional network</p>
+                            <a href="#" class="btn btn-light">Connect</a>
                         </div>
                     </div>
                 </div>
@@ -699,29 +511,31 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h5><i class="fas fa-paw me-2"></i>AnimalMarket</h5>
-                    <p>Connecting loving families with animals in need of homes.</p>
+                    <h5><i class="fas fa-code me-2"></i>MyFirstJob</h5>
+                    <p>A web development portfolio showcasing modern technologies and responsive design.</p>
                 </div>
                 <div class="col-md-4">
                     <h6>Quick Links</h6>
                     <ul class="list-unstyled">
-                        <li><a href="#catalog" class="text-light">Browse Animals</a></li>
-                        <li><a href="#shelters" class="text-light">Shelters</a></li>
-                        <li><a href="#add-animal" class="text-light">Add Animal</a></li>
+                        <li><a href="#about" class="text-light">About</a></li>
+                        <li><a href="#projects" class="text-light">Projects</a></li>
+                        <li><a href="#skills" class="text-light">Skills</a></li>
+                        <li><a href="demo.html" class="text-light">Live Demo</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <h6>Support</h6>
+                    <h6>Technologies</h6>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-light">Help Center</a></li>
-                        <li><a href="#" class="text-light">Safety Guidelines</a></li>
-                        <li><a href="#" class="text-light">Contact Us</a></li>
+                        <li><a href="#" class="text-light">HTML5 & CSS3</a></li>
+                        <li><a href="#" class="text-light">JavaScript</a></li>
+                        <li><a href="#" class="text-light">Bootstrap 5</a></li>
+                        <li><a href="#" class="text-light">Node.js</a></li>
                     </ul>
                 </div>
             </div>
             <hr class="my-4">
             <div class="text-center">
-                <p>&copy; 2024 AnimalMarket. All rights reserved.</p>
+                <p>&copy; 2024 MyFirstJob Portfolio. Built with ❤️ and modern web technologies.</p>
             </div>
         </div>
     </footer>
@@ -740,97 +554,25 @@
         const translations = {
             en: {
                 'nav-home': 'Home',
-                'nav-animals': 'Browse Animals',
-                'nav-shelters': 'Shelters & Breeders',
-                'nav-feedback': 'Feedback',
-                'nav-login': 'Login',
-                'nav-register': 'Sign Up',
-                'nav-dashboard': 'Dashboard',
-                'nav-add-animal': 'Add Animal',
-                'nav-logout': 'Logout',
-                'hero-title': 'Find Your Perfect Companion',
-                'hero-subtitle': 'Discover loving animals from shelters and trusted breeders. Every pet deserves a loving home.',
-                'browse-animals': 'Browse Animals',
-                'find-shelters': 'Find Shelters',
-                'all-animals': 'All Animals',
-                'dogs': 'Dogs',
-                'cats': 'Cats',
-                'birds': 'Birds',
-                'rabbits': 'Rabbits',
-                'other': 'Other',
-                'any-type': 'Any Type',
-                'adoption': 'Adoption',
-                'purchase': 'Purchase',
-                'city': 'City',
-                'browse-by-category': 'Browse by Category',
-                'loyal-companions': 'Find loyal companions',
-                'independent-friends': 'Independent friends',
-                'colorful-companions': 'Colorful companions',
-                'small-pets': 'Small Pets',
-                'rabbits-hamsters': 'Rabbits, hamsters & more',
-                'animals-from-shelters': 'Animals from Shelters',
-                'puppies-kittens': 'Puppies & Kittens',
-                'view-all': 'View All',
-                'free-adoption': 'Free Adoption',
-                'view-details': 'View Details',
-                'ready-difference': 'Ready to Make a Difference?',
-                'join-community': 'Join our community of animal lovers and help pets find their forever homes.',
-                'list-animal': 'List an Animal',
-                'help-animal': 'Help an animal find a new home',
-                'get-started': 'Get Started',
-                'adopt-pet': 'Adopt a Pet',
-                'find-companion': 'Find your perfect companion',
-                'browse-now': 'Browse Now',
-                'support-shelters': 'Support Shelters',
-                'help-local': 'Help local animal shelters',
-                'find-shelters-btn': 'Find Shelters'
+                'nav-about': 'About',
+                'nav-projects': 'Projects',
+                'nav-skills': 'Skills',
+                'nav-contact': 'Contact',
+                'hero-title': 'Welcome to My First Job',
+                'hero-subtitle': 'A showcase of my web development journey. This project demonstrates my skills in HTML, CSS, JavaScript, and modern web technologies.',
+                'view-projects': 'View Projects',
+                'about-me': 'About Me'
             },
             ru: {
                 'nav-home': 'Главная',
-                'nav-animals': 'Животные',
-                'nav-shelters': 'Приюты',
-                'nav-feedback': 'Отзывы',
-                'nav-login': 'Войти',
-                'nav-register': 'Регистрация',
-                'nav-dashboard': 'Панель управления',
-                'nav-add-animal': 'Добавить животное',
-                'nav-logout': 'Выйти',
-                'hero-title': 'Найдите своего идеального компаньона',
-                'hero-subtitle': 'Откройте для себя любящих животных из приютов и проверенных заводчиков. Каждый питомец заслуживает любящий дом.',
-                'browse-animals': 'Смотреть животных',
-                'find-shelters': 'Найти приюты',
-                'all-animals': 'Все животные',
-                'dogs': 'Собаки',
-                'cats': 'Кошки',
-                'birds': 'Птицы',
-                'rabbits': 'Кролики',
-                'other': 'Другие',
-                'any-type': 'Любой тип',
-                'adoption': 'Усыновление',
-                'purchase': 'Покупка',
-                'city': 'Город',
-                'browse-by-category': 'Поиск по категориям',
-                'loyal-companions': 'Найдите верных компаньонов',
-                'independent-friends': 'Независимые друзья',
-                'colorful-companions': 'Красочные компаньоны',
-                'small-pets': 'Мелкие питомцы',
-                'rabbits-hamsters': 'Кролики, хомяки и др.',
-                'animals-from-shelters': 'Животные из приютов',
-                'puppies-kittens': 'Щенки и котята',
-                'view-all': 'Смотреть все',
-                'free-adoption': 'Бесплатное усыновление',
-                'view-details': 'Подробнее',
-                'ready-difference': 'Готовы изменить мир к лучшему?',
-                'join-community': 'Присоединяйтесь к нашему сообществу любителей животных и помогите питомцам найти свои дома навсегда.',
-                'list-animal': 'Разместить животное',
-                'help-animal': 'Помогите животному найти новый дом',
-                'get-started': 'Начать',
-                'adopt-pet': 'Усыновить питомца',
-                'find-companion': 'Найдите своего идеального компаньона',
-                'browse-now': 'Смотреть сейчас',
-                'support-shelters': 'Поддержать приюты',
-                'help-local': 'Помогите местным приютам для животных',
-                'find-shelters-btn': 'Найти приюты'
+                'nav-about': 'О проекте',
+                'nav-projects': 'Проекты',
+                'nav-skills': 'Навыки',
+                'nav-contact': 'Контакты',
+                'hero-title': 'Добро пожаловать в Мою Первую Работу',
+                'hero-subtitle': 'Демонстрация моего пути в веб-разработке. Этот проект показывает мои навыки в HTML, CSS, JavaScript и современных веб-технологиях.',
+                'view-projects': 'Посмотреть проекты',
+                'about-me': 'Обо мне'
             }
         };
 
@@ -1051,12 +793,12 @@
             currentLanguage = lang;
             document.getElementById('htmlRoot').lang = lang === 'ru' ? 'ru' : 'en';
             document.getElementById('currentLang').textContent = lang === 'ru' ? 'Русский' : 'English';
-            document.getElementById('brandName').textContent = lang === 'ru' ? 'РынокЖивотных' : 'AnimalMarket';
+            document.getElementById('brandName').textContent = lang === 'ru' ? 'МояПерваяРабота' : 'MyFirstJob';
             
             // Update page title
             document.getElementById('pageTitle').textContent = lang === 'ru' ? 
-                'Рынок Животных - Найдите своего идеального компаньона' : 
-                'Animal Marketplace - Find Your Perfect Companion';
+                'Моя Первая Работа - Портфолио веб-разработчика' : 
+                'My First Job - Web Development Portfolio';
             
             // Update all translatable elements
             document.querySelectorAll('[data-translate]').forEach(element => {
@@ -1066,67 +808,40 @@
                 }
             });
             
-            // Re-render current page content
-            const currentPage = getCurrentPage();
-            renderPage(currentPage);
-            
             showNotification(
                 lang === 'ru' ? 'Язык изменен на русский' : 'Language changed to English',
                 'success'
             );
         }
 
-        // Get current page from URL hash
-        function getCurrentPage() {
-            const hash = window.location.hash.substring(1);
-            return hash || 'home';
-        }
-
-        // Navigation function
-        function navigateTo(page, params = {}) {
-            window.location.hash = page;
-            renderPage(page, params);
-        }
-
-        // Render different pages
-        function renderPage(page, params = {}) {
-            const mainContent = document.getElementById('mainContent');
+        // Simple navigation for portfolio
+        function showNotification(message, type = 'info') {
+            // Simple notification system
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type === 'success' ? 'success' : 'info'} notification`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
             
-            switch(page) {
-                case 'home':
-                    renderHomePage();
-                    break;
-                case 'catalog':
-                    renderCatalogPage(params);
-                    break;
-                case 'animal':
-                    renderAnimalProfile(params.id);
-                    break;
-                case 'shelters':
-                    renderSheltersPage();
-                    break;
-                case 'shelter':
-                    renderShelterProfile(params.id);
-                    break;
-                case 'login':
-                    renderLoginPage();
-                    break;
-                case 'register':
-                    renderRegisterPage();
-                    break;
-                case 'dashboard':
-                    renderDashboardPage();
-                    break;
-                case 'add-animal':
-                    renderAddAnimalPage();
-                    break;
-                case 'feedback':
-                    renderFeedbackPage();
-                    break;
-                default:
-                    renderHomePage();
-            }
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
         }
+
+        // Smooth scrolling for navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scrolling to all links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>

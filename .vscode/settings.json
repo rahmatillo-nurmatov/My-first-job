@@ -1,2 +1,18 @@
 {
+    "debug.node.autoAttach": "on",
+    "debug.terminal.clearBeforeReusing": true,
+    "debug.console.fontSize": 14,
+    "debug.console.wordWrap": true,
+    "emmet.includeLanguages": {
+        "ejs": "html"
+    },
+    "files.associations": {
+        "*.ejs": "html"
+    },
+    "liveServer.settings.port": 5500,
+    "liveServer.settings.root": "/",
+    "html.format.indentInnerHtml": true,
+    "html.format.wrapLineLength": 120,
+    "javascript.preferences.quoteStyle": "single",
+    "typescript.preferences.quoteStyle": "single"
 }
